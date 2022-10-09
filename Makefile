@@ -1,4 +1,4 @@
-VERSION ?= 0.4.0
+VERSION ?= 0.5.0
 RUST_VERSION ?= 1.64.0
 REPO ?= abdelino/lambda-rust
 TAG ?= "$(REPO):$(VERSION)-rust-$(RUST_VERSION)"
