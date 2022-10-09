@@ -22,6 +22,6 @@ You can also depend directly on `abdelino/lambda-rust:latest` for the most recen
 
 ## 🤸 usage
 
-The main motivation for this project is to build lambda functions in rust with the Serverless Framework while ensuring using the most recent Amazon Linux 2.
+The main motivation for this project is to build lambda functions in rust with the Serverless Framework with the most recent version of rust.
 
 @Abdel FARE 2022
