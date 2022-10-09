@@ -16,8 +16,8 @@
 
 +   #[tokio::main]
 +   async fn main() -> Result<(), Error> {
-+   let func = service_fn(handler);
-+   lambda_runtime::run(func).await?;
-+   Ok(())
-}
++       let func = service_fn(handler);
++       lambda_runtime::run(func).await?;
++       Ok(())
++   }
 ```
