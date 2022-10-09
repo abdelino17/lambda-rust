@@ -14,14 +14,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Test
         run: make test
+
   publish-docs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Update Docker hub metadata
         uses: docker://mpepping/docker-hub-metadata-github-action
         env:
@@ -29,11 +32,13 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         continue-on-error: true
+
   publish:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Build
         shell: bash
         run: make build
