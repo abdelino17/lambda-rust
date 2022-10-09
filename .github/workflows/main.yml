@@ -1,0 +1,40 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v**'
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  multi-images:
+    # needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: set up docker buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          install: true
+      
+      - name: Login to DockerHub
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: make build-push
